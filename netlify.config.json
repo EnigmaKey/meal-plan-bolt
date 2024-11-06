@@ -1,0 +1,16 @@
+{
+	"telemetryDisabled": false,
+	"cliId": "88ce4d21-f7c3-4ee3-a32f-44b7669387cc",
+	"userId": "672b9221ed6dd6164b0c3029",
+	"users": {
+		"672b9221ed6dd6164b0c3029": {
+			"id": "672b9221ed6dd6164b0c3029",
+			"name": "Michael Simoneau",
+			"email": "ceo@devcoup.com",
+			"auth": {
+				"token": "nfc_QtsVuKodoLuTLWbi8Z4YhVq8sT2LVEGHf0fb",
+				"github": {}
+			}
+		}
+	}
+}
