@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { AuthModal } from './AuthModal';
-import { Recipe } from '../types';
-import { Clock, Users } from 'lucide-react';
+import React, { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { AuthModal } from "./AuthModel";
+import { Recipe } from "../types";
+import { Clock, Users } from "lucide-react";
 
 export const AddRecipeView: React.FC = () => {
   const { user } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [recipe, setRecipe] = useState({
-    title: '',
-    cookTime: '',
-    servings: '',
-    ingredients: [''],
-    instructions: '',
+    title: "",
+    cookTime: "",
+    servings: "",
+    ingredients: [""],
+    instructions: "",
   });
 
   const handleIngredientChange = (index: number, value: string) => {
@@ -24,7 +24,7 @@ export const AddRecipeView: React.FC = () => {
   const addIngredient = () => {
     setRecipe({
       ...recipe,
-      ingredients: [...recipe.ingredients, ''],
+      ingredients: [...recipe.ingredients, ""],
     });
   };
 
@@ -46,13 +46,15 @@ export const AddRecipeView: React.FC = () => {
       title: recipe.title,
       ingredients: recipe.ingredients.filter(Boolean),
       instructions: recipe.instructions,
-      source: 'manual',
+      source: "manual",
       cookTime: recipe.cookTime,
       servings: recipe.servings,
     };
 
     // Get existing recipes from localStorage
-    const existingRecipes = JSON.parse(localStorage.getItem(`recipes_${user.id}`) || '[]');
+    const existingRecipes = JSON.parse(
+      localStorage.getItem(`recipes_${user.id}`) || "[]"
+    );
     localStorage.setItem(
       `recipes_${user.id}`,
       JSON.stringify([...existingRecipes, newRecipe])
@@ -60,11 +62,11 @@ export const AddRecipeView: React.FC = () => {
 
     // Reset form
     setRecipe({
-      title: '',
-      cookTime: '',
-      servings: '',
-      ingredients: [''],
-      instructions: '',
+      title: "",
+      cookTime: "",
+      servings: "",
+      ingredients: [""],
+      instructions: "",
     });
   };
 
@@ -95,7 +97,9 @@ export const AddRecipeView: React.FC = () => {
             <input
               type="number"
               value={recipe.cookTime}
-              onChange={(e) => setRecipe({ ...recipe, cookTime: e.target.value })}
+              onChange={(e) =>
+                setRecipe({ ...recipe, cookTime: e.target.value })
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             />
           </div>
@@ -108,7 +112,9 @@ export const AddRecipeView: React.FC = () => {
             <input
               type="number"
               value={recipe.servings}
-              onChange={(e) => setRecipe({ ...recipe, servings: e.target.value })}
+              onChange={(e) =>
+                setRecipe({ ...recipe, servings: e.target.value })
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             />
           </div>
@@ -124,7 +130,9 @@ export const AddRecipeView: React.FC = () => {
                 <input
                   type="text"
                   value={ingredient}
-                  onChange={(e) => handleIngredientChange(index, e.target.value)}
+                  onChange={(e) =>
+                    handleIngredientChange(index, e.target.value)
+                  }
                   placeholder="e.g., 2 cups flour"
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
@@ -155,7 +163,9 @@ export const AddRecipeView: React.FC = () => {
           </label>
           <textarea
             value={recipe.instructions}
-            onChange={(e) => setRecipe({ ...recipe, instructions: e.target.value })}
+            onChange={(e) =>
+              setRecipe({ ...recipe, instructions: e.target.value })
+            }
             rows={6}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             required
@@ -166,7 +176,7 @@ export const AddRecipeView: React.FC = () => {
           type="submit"
           className="w-full py-3 px-4 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
         >
-          {user ? 'Save Recipe' : 'Sign in to Save Recipe'}
+          {user ? "Save Recipe" : "Sign in to Save Recipe"}
         </button>
       </form>
 

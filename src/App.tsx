@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Navigation } from './components/Navigation';
-import { ChefHat, UserCircle } from 'lucide-react';
-import { SearchView } from './components/SearchView';
-import { AddRecipeView } from './components/AddRecipeView';
-import { RecipesView } from './components/RecipesView';
-import { MealPlanView } from './components/MealPlanView';
-import { GroceryListView } from './components/GroceryListView';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { AuthModal } from './components/AuthModal';
+import React, { useState } from "react";
+import { Navigation } from "./components/Navigation";
+import { ChefHat, UserCircle } from "lucide-react";
+import { SearchView } from "./components/SearchView";
+import { AddRecipeView } from "./components/AddRecipeView";
+import { RecipesView } from "./components/RecipesView";
+import { MealPlanView } from "./components/MealPlanView";
+import { GroceryListView } from "./components/GroceryListView";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthModal } from "./components/AuthModel";
 
 function AppContent() {
-  const [activeTab, setActiveTab] = useState('search');
+  const [activeTab, setActiveTab] = useState("search");
   const [showAuthModal, setShowAuthModal] = useState(false);
   const { user, logout } = useAuth();
 
@@ -52,11 +52,11 @@ function AppContent() {
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          {activeTab === 'search' && <SearchView />}
-          {activeTab === 'add' && <AddRecipeView />}
-          {activeTab === 'recipes' && <RecipesView />}
-          {activeTab === 'plan' && <MealPlanView />}
-          {activeTab === 'grocery' && <GroceryListView />}
+          {activeTab === "search" && <SearchView />}
+          {activeTab === "add" && <AddRecipeView />}
+          {activeTab === "recipes" && <RecipesView />}
+          {activeTab === "plan" && <MealPlanView />}
+          {activeTab === "grocery" && <GroceryListView />}
         </div>
       </main>
 

@@ -5,7 +5,7 @@ import { searchRecipes } from '../services/recipeService';
 import { RecipeCard } from './RecipeCard';
 import { RecipeDetail } from './RecipeDetail';
 import { useAuth } from '../contexts/AuthContext';
-import { AuthModal } from './AuthModal';
+import { AuthModal } from './AuthModel';
 
 export const SearchView: React.FC = () => {
   const { user } = useAuth();
@@ -26,6 +26,7 @@ export const SearchView: React.FC = () => {
       const results = await searchRecipes(query);
       setRecipes(results);
     } catch (err) {
+      console.error(err);
       setError('Failed to search recipes. Please try again.');
     } finally {
       setLoading(false);
@@ -54,7 +55,7 @@ export const SearchView: React.FC = () => {
   const isRecipeSaved = (recipeId: string): boolean => {
     if (!user) return false;
     const existingRecipes = JSON.parse(localStorage.getItem(`recipes_${user.id}`) || '[]');
-    return existingRecipes.some((r: Recipe) => r.id === recipeId);
+    return existingRecipes.some((r: Recipe) => r.id.toString() === recipeId);
   };
 
   if (selectedRecipe) {
@@ -63,7 +64,7 @@ export const SearchView: React.FC = () => {
         recipe={selectedRecipe}
         onBack={() => setSelectedRecipe(null)}
         onSave={() => handleSaveRecipe(selectedRecipe)}
-        isSaved={isRecipeSaved(selectedRecipe.id)}
+        isSaved={isRecipeSaved(selectedRecipe.id.toString())}
         showSaveButton
       />
     );
@@ -110,7 +111,7 @@ export const SearchView: React.FC = () => {
               <button
                 onClick={(e) => handleSaveRecipe(recipe, e)}
                 className={`absolute top-2 right-2 p-2 rounded-full shadow-md transition-all ${
-                  isRecipeSaved(recipe.id)
+                  isRecipeSaved(recipe.id.toString())
                     ? 'bg-emerald-500 text-white'
                     : 'bg-white text-gray-600 opacity-0 group-hover:opacity-100'
                 }`}
